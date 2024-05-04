@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)s: %(message)s"
+        },
+        "detailed": {
+            "format": "%(process)d %(asctime)s %(levelname)-8s In:%(module)s|%(lineno)d : %(message)s",
+            "datefmt": "%Y-%m-%dT%H:%M:%S%z"
+        }
+    },
+    "handlers": {
+        "stderr": {
+            "class": "logging.StreamHandler",
+            "level": "WARNING",
+            "formatter": "simple",
+            "stream": "ext://sys.stderr"
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "DEBUG",
+            "formatter": "detailed",
+            "filename":"logs/name-app.log",
+            "maxBytes": 10240,
+            "backupCount": 3
+        }
+    },
+    "loggers": {
+        "root": {
+            "level": "DEBUG",
+            "handlers": [
+                "stderr", "file"
+            ]
+        }
+    }
+}
